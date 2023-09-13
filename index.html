@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock</title>
+  <link rel="icon" href="https://res.cloudinary.com/dalynypf0/image/upload/v1693987869/3d_tyexef.png" type="image/icon type">
+
+</head>
+
+<style>
+
+  *{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+body
+{
+
+  background-color: #dda632;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+
+
+.container
+{
+  display: grid;
+  place-items: center;
+  height: 40rem;
+
+
+}
+#wrapper
+{
+  padding: 35px 35px;
+  border-radius: 30px;
+  font-size: 60px;
+  background-color: #5023c0;
+  color: white;
+  display: flex;
+  margin-bottom: 200px;
+  align-items: end;
+  gap: 7px;
+}
+
+#session
+{
+  font-size: 20px;
+}
+
+
+@media screen and (max-width:480px)
+{
+#wrapper{
+  font-size: 35px;
+  padding: 30px 30px;
+
+
+}
+.container{
+  margin-top: 150px;
+}
+body
+{
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+    font-weight: bolder;
+}
+}
+</style>
+
+
+<body>
+
+
+  <div  class="container">
+    <img src="https://res.cloudinary.com/dalynypf0/image/upload/v1693987869/3d_tyexef.png" width="350" height="350" alt="">
+    <div id="wrapper">
+      <span id="day">Wd</span>
+      <span id="colon">:</span>
+      <span id="hours">00</span>
+      <span id="colon">:</span>
+      <span id="minutes">00</span>
+      <span id="colon">:</span>
+      <span id="seconds">00</span>
+      <div id="session-container">
+
+        <span id="session">AM</span>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <script >
+    let hours = document.querySelector("#hours");
+let minutes = document.querySelector("#minutes");
+let seconds = document.querySelector("#seconds");
+let session = document.querySelector("#session");
+let days = document.querySelector("#day");
+
+function updatetime() {
+  let currentime = new Date();
+
+  let hr = currentime.getHours();
+  let min = currentime.getMinutes();
+  let sec = currentime.getSeconds();
+  let day = currentime.getDay();
+
+  if (hr >= 12) {
+    session.innerHTML = "PM";
+  }
+  if (hr > 12) {
+    hr = hr - 12;
+  }
+
+
+
+  switch (day) {
+    case 1:
+      days.innerHTML = "Mn";
+      break;
+    case 2:
+      days.innerHTML = "Tu";
+      break;
+    case 3:
+      days.innerHTML = "Wd";
+      break;
+    case 4:
+      days.innerHTML = "Th";
+      break;
+    case 5:
+      days.innerHTML = "Fr";
+      break;
+    case 6:
+      days.innerHTML = "Sa";
+      break;
+    case 7:
+      days.innerHTML = "Su";
+      break;
+  }
+
+  hours.innerHTML = padzero(hr);
+  minutes.innerHTML = padzero(min);
+  seconds.innerHTML=padzero(sec);
+
+
+  function padzero(num)
+  {
+   return num<=9?"0"+num:num;
+  }
+}
+
+setInterval(updatetime, 500);
+
+
+  </script>
+
+</body>
+</html>
